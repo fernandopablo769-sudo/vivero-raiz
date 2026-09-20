@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivero Raíz - Ingresar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #1a432b; /* Verde oscuro del vivero */
+            color: white;
+            padding: 15px;
+            display: flex; /* Ayuda a acomodar logo y menú */
+            justify-content: space-between;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        img {
+            max-width: 100%; /* Las imágenes ya no desbordan */
+            height: auto;
+        }
+        footer {
+            background-color: #11291b;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+   <header>
+        <div>
+            <a href="index.html">VIVERO RAÍZ</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Ingresar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Ingresar</h1>
+            <p>Usá la cuenta que te dio el vivero.</p>
+
+            <!-- Mensaje de error destacado (se ocultará o mostrará luego con JS, pero debe estar en el HTML) -->
+            <article style="color: red; border-left: 4px solid red; padding-left: 10px;">
+                El correo o la contraseña no coinciden. Probá de nuevo.
+            </article>
+
+            <form action="#" method="POST">
+                <label for="correo-login">Correo electrónico</label>
+                <input type="email" id="correo-login" name="correo-login" placeholder="Ejemplo: nombre@viveroraiz.com" required>
+
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+
+                <input type="checkbox" id="mantener-sesion" name="mantener-sesion">
+                <label for="mantener-sesion">Mantener la sesión abierta</label>
+
+                <button type="submit">Ingresar</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <section>
+            <h3>VIVERO RAÍZ</h3>
+            <p>Ruta 25 km 4,5<br>Escobar, Buenos Aires<br>(011) 4444-5566</p>
+        </section>
+        <section>
+            <h3>SECCIONES</h3>
+            <ul>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Ingresar</a></li>
+            </ul>
+        </section>
+        <section>
+            <h3>HORARIOS</h3>
+            <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
+        </section>
+    </footer>
+</body>
+</html>

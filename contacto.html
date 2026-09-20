@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivero Raíz - Contacto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #1a432b; /* Verde oscuro del vivero */
+            color: white;
+            padding: 15px;
+            display: flex; /* Ayuda a acomodar logo y menú */
+            justify-content: space-between;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        img {
+            max-width: 100%; /* Las imágenes ya no desbordan */
+            height: auto;
+        }
+        footer {
+            background-color: #11291b;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+   <header>
+        <div>
+            <a href="index.html">VIVERO RAÍZ</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Ingresar</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Contacto</h1>
+            <p>Escribinos por encargos, envíos o asesoramiento. Respondemos dentro de las 48 horas hábiles.</p>
+            
+            <form action="#" method="POST">
+                <label for="nombre">Nombre y Apellido *</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="correo">Correo electrónico *</label>
+                <input type="email" id="correo" name="correo" required>
+
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono">
+
+                <label for="motivo">Motivo *</label>
+                <select id="motivo" name="motivo" required>
+                    <option value="">Elegí un motivo</option>
+                    <option value="encargo">Encargo</option>
+                    <option value="envio">Envío</option>
+                    <option value="asesoramiento">Asesoramiento</option>
+                </select>
+
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+
+                <input type="checkbox" id="novedades" name="novedades">
+                <label for="novedades">Quiero recibir las novedades del vivero</label>
+
+                <button type="submit">Enviar Consulta</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <section>
+            <h3>VIVERO RAÍZ</h3>
+            <p>Ruta 25 km 4,5<br>Escobar, Buenos Aires<br>(011) 4444-5566</p>
+        </section>
+        <section>
+            <h3>SECCIONES</h3>
+            <ul>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Ingresar</a></li>
+            </ul>
+        </section>
+        <section>
+            <h3>HORARIOS</h3>
+            <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
+        </section>
+    </footer>
+</body>
+</html>
