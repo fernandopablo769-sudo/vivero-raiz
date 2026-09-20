@@ -1,0 +1,27 @@
+/* estilos.css */
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; }
+header { background-color: #1a432b; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+header a { color: white; text-decoration: none; font-weight: bold; }
+header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
+main { padding: 20px; max-width: 1000px; margin: 20px auto; background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+img { max-width: 100%; height: auto; border-radius: 8px; }
+footer { background-color: #11291b; color: white; padding: 20px; margin-top: 40px; display: flex; justify-content: space-between; }
+
+/* Jerarquía visual */
+h1 { color: #1a432b; font-size: 2.5em; margin-bottom: 10px; }
+h2 { color: #2c5e3d; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+/* Botones */
+.boton { display: inline-block; background-color: #2c5e3d; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; border: none; cursor: pointer; }
+.boton:hover { background-color: #1a432b; }
+
+/* Tablas */
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+th { background-color: #f8f9fa; color: #1a432b; width: 35%; }
+
+/* Formularios (Exclusivo Entrega 3) */
+fieldset { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+legend { font-weight: bold; color: #1a432b; padding: 0 10px; text-transform: uppercase; letter-spacing: 1px; }
+label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9em; }
+input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
