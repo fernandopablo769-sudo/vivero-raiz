@@ -25,3 +25,42 @@ fieldset { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-ra
 legend { font-weight: bold; color: #1a432b; padding: 0 10px; text-transform: uppercase; letter-spacing: 1px; }
 label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9em; }
 input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+/* --- ENTREGA 4: DISEÑO RESPONSIVO (GRILLAS) --- */
+
+/* Contenedor principal del catálogo */
+.contenedor-catalogo {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna por defecto (Celulares) */
+    gap: 25px;
+    margin-top: 20px;
+}
+
+/* Tarjetas individuales de cada planta */
+.contenedor-catalogo article {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.contenedor-catalogo article:hover {
+    transform: translateY(-5px); /* Pequeño efecto 3D al pasar el mouse */
+}
+
+/* Tablets (pantallas de 768px o más) */
+@media (min-width: 768px) {
+    .contenedor-catalogo {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    }
+}
+
+/* Escritorio (pantallas de 1024px o más) */
+@media (min-width: 1024px) {
+    .contenedor-catalogo {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    }
+}
