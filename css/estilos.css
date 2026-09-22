@@ -64,3 +64,22 @@ input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1
         grid-template-columns: repeat(3, 1fr); /* 3 columnas */
     }
 }
+/* --- ENTREGA 4: HEADER Y FOOTER RESPONSIVOS --- */
+
+/* 1. Mobile First: En celulares, apilamos los elementos verticalmente */
+header, header ul, footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
+
+/* 2. Breakpoint: En Tablets y Escritorio, vuelven a estar en fila horizontal */
+@media (min-width: 768px) {
+    header, footer {
+        flex-direction: row;
+        text-align: left;
+    }
+    header ul {
+        flex-direction: row;
+    }
+}
