@@ -131,4 +131,73 @@ header, header ul, footer {
     .linea-tiempo {
         grid-template-columns: repeat(4, 1fr);
     }
+}/* --- ENTREGA 5: MENSAJES DE ESTADO (listos para JS) --- */
+.mensaje-error {
+    color: #a33;
+    border-left: 4px solid #a33;
+    background-color: #fbecec;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+.mensaje-exito {
+    color: #1a432b;
+    border-left: 4px solid #2c5e3d;
+    background-color: #eaf3ec;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+/* --- ENTREGA 5: BOTONES CHICOS PARA ACCIONES EN TABLAS --- */
+.boton-chico {
+    padding: 6px 14px;
+    font-size: 0.85em;
+    margin-top: 0;
+}
+
+.boton-eliminar {
+    background-color: #a33;
+}
+
+.boton-eliminar:hover {
+    background-color: #7a2626;
+}
+
+.acciones-tabla {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* --- ENTREGA 5: TABLA CON SCROLL HORIZONTAL EN CELULAR --- */
+.tabla-scroll {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+/* --- ENTREGA 5: TRANSICIONES Y ESTADOS :hover / :focus EN TODO LO CLICKEABLE --- */
+.boton {
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.boton:focus-visible,
+header nav a:focus-visible,
+footer nav a:focus-visible {
+    outline: 3px solid #2c5e3d;
+    outline-offset: 2px;
+}
+
+header nav a:hover,
+footer nav a:hover {
+    text-decoration: underline;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2c5e3d;
+    box-shadow: 0 0 0 3px rgba(44, 94, 61, 0.15);
 }
