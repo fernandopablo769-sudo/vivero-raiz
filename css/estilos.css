@@ -1,168 +1,234 @@
-/* estilos.css */
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; }
-header { background-color: #1a432b; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-header a { color: white; text-decoration: none; font-weight: bold; }
-header ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
-main { padding: 20px; max-width: 1000px; margin: 20px auto; background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-img { max-width: 100%; height: auto; border-radius: 8px; }
-footer { background-color: #11291b; color: white; padding: 20px; margin-top: 40px; display: flex; justify-content: space-between; }
+/* ============================================================
+   SISTEMA DE DISEÑO — Paleta "Contraste botánico" + Tipografía
+   ============================================================ */
 
-/* Jerarquía visual */
-h1 { color: #1a432b; font-size: 2.5em; margin-bottom: 10px; }
-h2 { color: #2c5e3d; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+:root {
+    --color-fondo: #ECE5D6;
+    --color-superficie: #F7F3EA;
+    --color-fondo-oscuro: #121815;
+    --color-texto: #121815;
+    --color-texto-claro: #FFFFFF;
+    --color-texto-muted: #55594F;
+    --color-primario: #1F4A3A;
+    --color-primario-hover: #163428;
+    --color-acento: #E35B6B;
+    --color-acento-hover: #D1485B;
+     --color-encuadre: #d98a93;
+    --color-peligro: #A33333;
+    --color-peligro-hover: #7A2626;
+    --color-borde: #D9CFBC;
+    --color-exito-fondo: #EAF1EC;
+    --color-exito-texto: #1F4A3A;
+    --color-error-fondo: #FBECEC;
+    --color-error-texto: #A33333;
 
-/* Botones */
-.boton { display: inline-block; background-color: #2c5e3d; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; border: none; cursor: pointer; }
-.boton:hover { background-color: #1a432b; }
-
-/* Tablas */
-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
-th { background-color: #f8f9fa; color: #1a432b; width: 35%; }
-
-/* Formularios (Exclusivo Entrega 3) */
-fieldset { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
-legend { font-weight: bold; color: #1a432b; padding: 0 10px; text-transform: uppercase; letter-spacing: 1px; }
-label { display: block; margin-top: 10px; font-weight: bold; font-size: 0.9em; }
-input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-
-/* --- ENTREGA 4: DISEÑO RESPONSIVO (GRILLAS) --- */
-
-/* Contenedor principal del catálogo */
-.contenedor-catalogo {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 columna por defecto (Celulares) */
-    gap: 25px;
-    margin-top: 20px;
+    --fuente-titulos: 'Outfit', sans-serif;
+    --fuente-base: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* Tarjetas individuales de cada planta */
-.contenedor-catalogo article img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+/* ============================================================
+   BASE
+   ============================================================ */
+
+body {
+    font-family: var(--fuente-base);
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
 }
 
-.contenedor-catalogo article:hover {
-    transform: translateY(-5px); /* Pequeño efecto 3D al pasar el mouse */
+h1, h2, h3, legend {
+    font-family: var(--fuente-titulos);
 }
 
-/* Tablets (pantallas de 768px o más) */
-@media (min-width: 768px) {
-    .contenedor-catalogo {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-    }
-}
+/* ============================================================
+   HEADER / FOOTER
+   ============================================================ */
 
-/* Escritorio (pantallas de 1024px o más) */
-@media (min-width: 1024px) {
-    .contenedor-catalogo {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-    }
-}
-/* --- ENTREGA 4: HEADER Y FOOTER RESPONSIVOS --- */
-
-/* 1. Mobile First: En celulares, apilamos los elementos verticalmente */
-header, header ul, footer {
+header, footer {
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    padding: 20px 24px;
+    display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 15px;
 }
 
-/* 2. Breakpoint: En Tablets y Escritorio, vuelven a estar en fila horizontal */
+footer {
+    margin-top: 48px;
+}
+
+header div a {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    font-size: 1.1em;
+    letter-spacing: 0.4px;
+    color: var(--color-texto-claro);
+    text-decoration: none;
+}
+
+header nav a,
+footer a {
+    color: var(--color-texto-claro);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header nav a:hover,
+footer a:hover {
+    text-decoration: underline;
+}
+
+header ul,
+footer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px 28px;
+    margin: 0;
+    padding: 0;
+}
+
 @media (min-width: 768px) {
     header, footer {
         flex-direction: row;
+        justify-content: space-between;
         text-align: left;
     }
-    header ul {
+    header ul, footer ul {
         flex-direction: row;
-    }
-}/* --- ENTREGA 4: NOSOTROS.HTML (EQUIPO Y LÍNEA DE TIEMPO) --- */
-
-.contenedor-equipo,
-.linea-tiempo {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin-top: 20px;
-}
-
-.contenedor-equipo article,
-.linea-tiempo article {
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.contenedor-equipo img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.linea-tiempo h3 {
-    color: #1a432b;
-    font-size: 1.8em;
-    border-bottom: none;
-}
-
-@media (min-width: 768px) {
-    .contenedor-equipo {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .linea-tiempo {
-        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
     }
 }
 
-@media (min-width: 1024px) {
-    .linea-tiempo {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}/* --- ENTREGA 5: MENSAJES DE ESTADO (listos para JS) --- */
-.mensaje-error {
-    color: #a33;
-    border-left: 4px solid #a33;
-    background-color: #fbecec;
-    padding: 10px 15px;
-    border-radius: 4px;
-    margin: 15px 0;
+/* ============================================================
+   CONTENIDO PRINCIPAL
+   ============================================================ */
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
 }
 
-.mensaje-exito {
-    color: #1a432b;
-    border-left: 4px solid #2c5e3d;
-    background-color: #eaf3ec;
-    padding: 10px 15px;
-    border-radius: 4px;
-    margin: 15px 0;
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+/* Encuadre "bloque desfasado": un bloque verde sólido detrás de cada foto */
+main img {
+    display: block;
+    width: calc(100% - 12px);
+    box-shadow: 12px 12px 0 var(--color-encuadre);
+        }
+
+h1 {
+    color: var(--color-texto);
+    font-weight: 600;
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
-/* --- ENTREGA 5: BOTONES CHICOS PARA ACCIONES EN TABLAS --- */
+h2 {
+    color: var(--color-texto);
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 10px;
+}
+
+p {
+    color: var(--color-texto-muted);
+    line-height: 1.6;
+}
+
+main a {
+    color: var(--color-primario);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+
+.boton {
+    display: inline-block;
+    background-color: var(--color-acento);
+    color: var(--color-texto);
+    padding: 12px 26px;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-family: var(--fuente-base);
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.boton:hover {
+    background-color: var(--color-acento-hover);
+}
+
 .boton-chico {
-    padding: 6px 14px;
+    padding: 7px 18px;
     font-size: 0.85em;
     margin-top: 0;
 }
 
 .boton-eliminar {
-    background-color: #a33;
+    background-color: var(--color-peligro);
+    color: var(--color-texto-claro);
 }
 
 .boton-eliminar:hover {
-    background-color: #7a2626;
+    background-color: var(--color-peligro-hover);
+}
+
+.boton:focus-visible,
+main a:focus-visible,
+header nav a:focus-visible,
+footer a:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   TABLAS
+   ============================================================ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid var(--color-borde);
+    text-align: left;
+}
+
+th {
+    background-color: var(--color-superficie);
+    color: var(--color-primario);
+    width: 35%;
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+}
+
+.tabla-scroll {
+    overflow-x: auto;
+    margin-top: 20px;
 }
 
 .acciones-tabla {
@@ -171,33 +237,152 @@ header, header ul, footer {
     flex-wrap: wrap;
 }
 
-/* --- ENTREGA 5: TABLA CON SCROLL HORIZONTAL EN CELULAR --- */
-.tabla-scroll {
-    overflow-x: auto;
+/* ============================================================
+   MENSAJES DE ESTADO
+   ============================================================ */
+
+.mensaje-error {
+    color: var(--color-error-texto);
+    border-left: 4px solid var(--color-error-texto);
+    background-color: var(--color-error-fondo);
+    padding: 10px 15px;
+    border-radius: 0;
+    margin: 15px 0;
+}
+
+.mensaje-exito {
+    color: var(--color-exito-texto);
+    border-left: 4px solid var(--color-exito-texto);
+    background-color: var(--color-exito-fondo);
+    padding: 10px 15px;
+    border-radius: 0;
+    margin: 15px 0;
+}
+
+/* ============================================================
+   FORMULARIOS
+   ============================================================ */
+
+fieldset {
+    border: 1px solid var(--color-borde);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0;
+}
+
+legend {
+    font-weight: 600;
+    color: var(--color-primario);
+    padding: 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+input, select, textarea {
+     background-color: var(--color-superficie);
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: var(--fuente-base);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(31, 74, 58, 0.15);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--color-acento);
+}
+
+.grupo-opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.grupo-opciones label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+.grupo-opciones input[type="radio"],
+.grupo-opciones input[type="checkbox"] {
+    width: auto;
+    margin-top: 0;
+}
+
+/* ============================================================
+   GRILLAS RESPONSIVAS (catálogo, equipo, línea de tiempo)
+   ============================================================ */
+
+.contenedor-catalogo,
+.contenedor-equipo,
+.linea-tiempo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
     margin-top: 20px;
 }
 
-/* --- ENTREGA 5: TRANSICIONES Y ESTADOS :hover / :focus EN TODO LO CLICKEABLE --- */
-.boton {
-    transition: background-color 0.2s ease, transform 0.15s ease;
+.contenedor-catalogo article,
+.contenedor-equipo article,
+.linea-tiempo article {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    padding: 18px;
+    text-align: center;
+    transition: transform 0.3s ease;
 }
 
-.boton:focus-visible,
-header nav a:focus-visible,
-footer nav a:focus-visible {
-    outline: 3px solid #2c5e3d;
-    outline-offset: 2px;
+.contenedor-catalogo article:hover {
+    transform: translateY(-5px);
 }
 
-header nav a:hover,
-footer nav a:hover {
-    text-decoration: underline;
+.contenedor-catalogo article img,
+.contenedor-equipo img {
+     width: calc(100% - 12px);
+    height: 180px;
+    object-fit: cover;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #2c5e3d;
-    box-shadow: 0 0 0 3px rgba(44, 94, 61, 0.15);
+.linea-tiempo h3 {hea
+    color: var(--color-primario);
+    font-size: 1.8em;
+}
+
+@media (min-width: 768px) {
+    .contenedor-catalogo,
+    .contenedor-equipo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .linea-tiempo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .contenedor-catalogo,
+    .contenedor-equipo {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .linea-tiempo {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
