@@ -37,7 +37,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1
 }
 
 /* Tarjetas individuales de cada planta */
-.contenedor-catalogo article {
+.contenedor-catalogo article img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
     background-color: white;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
