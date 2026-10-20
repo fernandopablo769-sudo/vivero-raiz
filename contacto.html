@@ -26,32 +26,39 @@
             <h1>Contacto</h1>
             <p>Escribinos por encargos, envíos o asesoramiento. Respondemos dentro de las 48 horas hábiles.</p>
             
-            <form action="#" method="POST">
-                <label for="nombre">Nombre y Apellido *</label>
-                <input type="text" id="nombre" name="nombre" required>
+            <form id="form-contacto" action="#" method="POST" novalidate>
+    <p id="contacto-exito" class="mensaje-exito" hidden>¡Gracias! Recibimos tu consulta y te respondemos dentro de las 48 horas hábiles.</p>
 
-                <label for="correo">Correo electrónico *</label>
-                <input type="email" id="correo" name="correo" required>
+    <label for="nombre">Nombre y apellido *</label>
+    <input type="text" id="nombre" name="nombre" required>
+    <p class="error-campo" id="error-nombre"></p>
 
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono">
+    <label for="correo">Correo electrónico *</label>
+    <input type="email" id="correo" name="correo" required>
+    <p class="error-campo" id="error-correo"></p>
 
-                <label for="motivo">Motivo *</label>
-                <select id="motivo" name="motivo" required>
-                    <option value="">Elegí un motivo</option>
-                    <option value="encargo">Encargo</option>
-                    <option value="envio">Envío</option>
-                    <option value="asesoramiento">Asesoramiento</option>
-                </select>
+    <label for="telefono">Teléfono</label>
+    <input type="tel" id="telefono" name="telefono">
 
-                <label for="mensaje">Mensaje *</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
+    <label for="motivo">Motivo *</label>
+    <select id="motivo" name="motivo" required>
+        <option value="">Elegí un motivo</option>
+        <option value="encargo">Encargo</option>
+        <option value="envio">Envío</option>
+        <option value="asesoramiento">Asesoramiento</option>
+    </select>
+    <p class="error-campo" id="error-motivo"></p>
 
-                <input type="checkbox" id="novedades" name="novedades">
-                <label for="novedades">Quiero recibir las novedades del vivero</label>
+    <label for="mensaje">Mensaje *</label>
+    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+    <p class="error-campo" id="error-mensaje"></p>
 
-                <button type="submit" class="boton">Enviar Consulta</button>
-            </form>
+    <div class="grupo-opciones">
+        <label><input type="checkbox" id="novedades" name="novedades"> Quiero recibir las novedades del vivero</label>
+    </div>
+
+    <button type="submit" class="boton">Enviar consulta</button>
+</form>
         </section>
     </main>
 
@@ -74,5 +81,6 @@
             <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
         </section>
     </footer>
+    <script src="js/validaciones.js"></script>
 </body>
 </html>

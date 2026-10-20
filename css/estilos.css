@@ -362,7 +362,7 @@ input[type="radio"] {
     object-fit: cover;
 }
 
-.linea-tiempo h3 {hea
+.linea-tiempo h3 {
     color: var(--color-primario);
     font-size: 1.8em;
 }
@@ -385,4 +385,16 @@ input[type="radio"] {
     .linea-tiempo {
         grid-template-columns: repeat(4, 1fr);
     }
+}
+/* --- ENTREGA 6: ERRORES DE VALIDACIÓN --- */
+.error-campo {
+    color: var(--color-error-texto);
+    font-size: 0.85em;
+    font-weight: 600;
+    margin: 4px 0 0;
+}
+
+.campo-invalido {
+    border-color: var(--color-error-texto);
+    background-color: var(--color-error-fondo);
 }
