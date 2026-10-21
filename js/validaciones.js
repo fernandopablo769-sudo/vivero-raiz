@@ -32,6 +32,18 @@ function validarObligatorio(campo, mensaje) {
     limpiarError(campo);
     return true;
 }
+// Revisa que un correo esté completo y bien escrito.
+// Devuelve true si está bien, false si no (y muestra el error).
+function validarCorreo(campo) {
+    if (!validarObligatorio(campo, 'Escribí tu correo electrónico.')) {
+        return false;
+    }
+    if (!esCorreoValido(campo.value.trim())) {
+        mostrarError(campo, 'El correo no tiene un formato válido. Ejemplo: nombre@mail.com');
+        return false;
+    }
+    return true;
+}
 
 
 // ---------- FORMULARIO DE CONTACTO ----------
@@ -57,10 +69,7 @@ if (formContacto) {
             todoBien = false;
         }
 
-        if (!validarObligatorio(correo, 'Escribí tu correo electrónico.')) {
-            todoBien = false;
-        } else if (!esCorreoValido(correo.value.trim())) {
-            mostrarError(correo, 'El correo no tiene un formato válido. Ejemplo: nombre@mail.com');
+        if (!validarCorreo(correo)) {
             todoBien = false;
         }
 
@@ -78,6 +87,34 @@ if (formContacto) {
             formContacto.reset();
         } else {
             mensajeExito.hidden = true;
+        }
+    });
+}
+// ---------- FORMULARIO DE LOGIN ----------
+
+const formLogin = document.getElementById('form-login');
+
+if (formLogin) {
+    formLogin.addEventListener('submit', function (evento) {
+        evento.preventDefault();
+
+        const correo = document.getElementById('correo-login');
+        const contrasena = document.getElementById('contrasena');
+
+        let todoBien = true;
+
+        if (!validarCorreo(correo)) {
+            todoBien = false;
+        }
+
+        if (!validarObligatorio(contrasena, 'Escribí tu contraseña.')) {
+            todoBien = false;
+        }
+
+        if (todoBien) {
+            // Provisorio: hasta la Entrega 11 no hay usuarios reales,
+            // así que con los campos completos pasamos directo a la intranet.
+            window.location.href = 'listado.html';
         }
     });
 }
