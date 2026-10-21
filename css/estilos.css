@@ -103,6 +103,17 @@ footer ul {
         flex-direction: row;
         align-items: center;
     }
+    /* Texto del footer legible sobre el fondo oscuro */
+footer p {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* En escritorio, las 3 columnas del footer alineadas arriba */
+@media (min-width: 768px) {
+    footer {
+        align-items: flex-start;
+    }
+}
 }
 
 /* ============================================================
@@ -131,7 +142,7 @@ h1 {
     color: var(--color-texto);
     font-weight: 600;
     font-size: 2.5em;
-    margin-bottom: 10px;
+    margin-bottom:36px
 }
 
 h2 {
@@ -221,7 +232,6 @@ th, td {
 th {
     background-color: var(--color-superficie);
     color: var(--color-primario);
-    width: 35%;
     font-family: var(--fuente-titulos);
     font-weight: 600;
 }
@@ -236,6 +246,17 @@ th {
     gap: 8px;
     flex-wrap: wrap;
 }
+/* Tabla de especificaciones de planta.html: primera columna fija */
+.tabla-ficha th {
+    width: 35%;
+}
+
+/* Listado de la intranet: que ningún dato se parta en dos renglones */
+.tabla-scroll td {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
 
 /* ============================================================
    MENSAJES DE ESTADO
