@@ -118,3 +118,70 @@ if (formLogin) {
         }
     });
 }
+// ---------- FORMULARIO DE REGISTRO ----------
+
+const formRegistro = document.getElementById('form-registro');
+
+if (formRegistro) {
+    formRegistro.addEventListener('submit', function (evento) {
+        evento.preventDefault();
+
+        const nombre = document.getElementById('nombre');
+        const apellido = document.getElementById('apellido');
+        const correo = document.getElementById('correo-reg');
+        const contrasena = document.getElementById('pass-reg');
+        const repetir = document.getElementById('pass-rep');
+        const rol = document.getElementById('rol');
+        const terminos = document.getElementById('terminos');
+        const mensajeExito = document.getElementById('registro-exito');
+
+        let todoBien = true;
+
+        if (!validarObligatorio(nombre, 'Escribí tu nombre.')) {
+            todoBien = false;
+        }
+
+        if (!validarObligatorio(apellido, 'Escribí tu apellido.')) {
+            todoBien = false;
+        }
+
+        if (!validarCorreo(correo)) {
+            todoBien = false;
+        }
+
+        // Contraseña: obligatoria y con al menos 8 caracteres
+        if (!validarObligatorio(contrasena, 'Elegí una contraseña.')) {
+            todoBien = false;
+        } else if (contrasena.value.length < 8) {
+            mostrarError(contrasena, 'La contraseña tiene que tener al menos 8 caracteres.');
+            todoBien = false;
+        }
+
+        // Repetir contraseña: obligatoria e igual a la primera
+        if (!validarObligatorio(repetir, 'Repetí la contraseña.')) {
+            todoBien = false;
+        } else if (repetir.value !== contrasena.value) {
+            mostrarError(repetir, 'Las contraseñas no coinciden.');
+            todoBien = false;
+        }
+
+        if (!validarObligatorio(rol, 'Elegí tu rol en el vivero.')) {
+            todoBien = false;
+        }
+
+        // Términos: un checkbox no tiene texto, se revisa si está tildado
+        if (!terminos.checked) {
+            mostrarError(terminos, 'Tenés que aceptar los términos y condiciones para crear la cuenta.');
+            todoBien = false;
+        } else {
+            limpiarError(terminos);
+        }
+
+        if (todoBien) {
+            mensajeExito.hidden = false;
+            formRegistro.reset();
+        } else {
+            mensajeExito.hidden = true;
+        }
+    });
+}

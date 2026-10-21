@@ -2,79 +2,125 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Vivero Raíz - Crear Cuenta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivero Raíz - Crear cuenta</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-
     <header>
         <div><a href="index.html">VIVERO RAÍZ</a></div>
-     <nav>
-    <ul>
-        <li><a href="catalogo.html">Catálogo</a></li>
-        <li><a href="nosotros.html">Nosotros</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="login.html">Ingresar</a></li>
-    </ul>
-</nav>
+        <nav>
+            <ul>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Ingresar</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <h1>Crear cuenta</h1>
         <p>Los campos marcados con * son obligatorios.</p>
-        
-        <form action="#" method="POST">
-            <!-- Primer grupo de datos -->
+
+        <p id="registro-exito" class="mensaje-exito" hidden>¡Listo! Tu cuenta quedó creada. Ya podés <a href="login.html">ingresar</a>.</p>
+
+        <form id="form-registro" action="#" method="POST" novalidate>
             <fieldset>
-                <legend>Datos Personales</legend>
-                <label for="nombre">Nombre *</label>
-                <input type="text" id="nombre" name="nombre" required>
-                
-                <label for="apellido">Apellido *</label>
-                <input type="text" id="apellido" name="apellido" required>
-                
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" name="telefono">
+                <legend>Datos personales</legend>
+
+                <div class="fila-campos">
+                    <div>
+                        <label for="nombre">Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        <p class="error-campo" id="error-nombre"></p>
+                    </div>
+                    <div>
+                        <label for="apellido">Apellido *</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                        <p class="error-campo" id="error-apellido"></p>
+                    </div>
+                </div>
+
+                <div class="fila-campos">
+                    <div>
+                        <label for="fecha-nacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+                </div>
             </fieldset>
 
-            <!-- Segundo grupo de datos -->
             <fieldset>
-                <legend>Datos de la Cuenta</legend>
+                <legend>Datos de la cuenta</legend>
+
                 <label for="correo-reg">Correo electrónico *</label>
                 <input type="email" id="correo-reg" name="correo-reg" required>
-                
-                <label for="pass-reg">Contraseña *</label>
-                <input type="password" id="pass-reg" name="pass-reg" minlength="8" required>
-                
-                <label for="pass-rep">Repetir contraseña *</label>
-                <input type="password" id="pass-rep" name="pass-rep" minlength="8" required>
+                <p class="error-campo" id="error-correo-reg"></p>
+
+                <div class="fila-campos">
+                    <div>
+                        <label for="pass-reg">Contraseña *</label>
+                        <input type="password" id="pass-reg" name="pass-reg" minlength="8" required>
+                        <p class="ayuda-campo">Mínimo 8 caracteres.</p>
+                        <p class="error-campo" id="error-pass-reg"></p>
+                    </div>
+                    <div>
+                        <label for="pass-rep">Repetir contraseña *</label>
+                        <input type="password" id="pass-rep" name="pass-rep" minlength="8" required>
+                        <p class="error-campo" id="error-pass-rep"></p>
+                    </div>
+                </div>
+
+                <label for="rol">Rol en el vivero *</label>
+                <select id="rol" name="rol" required>
+                    <option value="">Elegí una opción</option>
+                    <option value="ventas">Ventas y atención</option>
+                    <option value="vivero">Vivero y cuidado de plantas</option>
+                    <option value="administracion">Administración</option>
+                </select>
+                <p class="error-campo" id="error-rol"></p>
             </fieldset>
 
-            <button type="submit" class="boton">Crear Cuenta</button>
+            <div class="grupo-opciones">
+                <label><input type="checkbox" id="terminos" name="terminos" required> Acepto los <a href="#">términos y condiciones</a> *</label>
+            </div>
+            <p class="error-campo" id="error-terminos"></p>
+
+            <div class="grupo-opciones">
+                <label><input type="checkbox" id="novedades-reg" name="novedades"> Quiero recibir novedades del vivero</label>
+            </div>
+
+            <button type="submit" class="boton">Crear cuenta</button>
         </form>
-        <p>¿Ya tenés cuenta? <a href="login.html">Ingresá acá</a></p>
+
+        <p>¿Ya tenés cuenta? <a href="login.html">Ingresá</a></p>
     </main>
 
-  <footer>
-    <section>
-        <h3>VIVERO RAÍZ</h3>
-        <p>Ruta 25 km 4,5<br>Escobar, Buenos Aires<br>(011) 4444-5566</p>
-    </section>
-    <section>
-        <h3>SECCIONES</h3>
-        <ul>
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="login.html">Ingresar</a></li>
-        </ul>
-    </section>
-    <section>
-        <h3>HORARIOS</h3>
-        <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
-    </section>
-</footer>
+    <footer>
+        <section>
+            <h3>VIVERO RAÍZ</h3>
+            <p>Ruta 25 km 4,5<br>Escobar, Buenos Aires<br>(011) 4444-5566</p>
+        </section>
+        <section>
+            <h3>SECCIONES</h3>
+            <ul>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Ingresar</a></li>
+            </ul>
+        </section>
+        <section>
+            <h3>HORARIOS</h3>
+            <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
+        </section>
+    </footer>
 
+    <script src="js/validaciones.js"></script>
 </body>
 </html>

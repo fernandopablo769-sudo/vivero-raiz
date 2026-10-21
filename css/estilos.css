@@ -419,3 +419,23 @@ input[type="radio"] {
     border-color: var(--color-error-texto);
     background-color: var(--color-error-fondo);
 }
+/* --- ENTREGA 6: FORMULARIO DE REGISTRO --- */
+
+/* Dos campos lado a lado en escritorio, apilados en celular */
+.fila-campos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 20px;
+}
+
+@media (min-width: 768px) {
+    .fila-campos {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Texto de ayuda debajo de un campo (ej: "Mínimo 8 caracteres") */
+.ayuda-campo {
+    font-size: 0.85em;
+    margin: 4px 0 0;
+}
