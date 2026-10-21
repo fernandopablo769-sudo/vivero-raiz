@@ -439,3 +439,58 @@ input[type="radio"] {
     font-size: 0.85em;
     margin: 4px 0 0;
 }
+/* --- ENTREGA 6: MENÚ HAMBURGUESA --- */
+
+/* Fila superior del header: marca a la izquierda, botón a la derecha */
+.header-barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.boton-menu {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--color-texto-claro);
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* En celular, el menú arranca cerrado */
+.menu {
+    display: none;
+    width: 100%;
+}
+
+/* JavaScript le agrega esta clase cuando el usuario lo abre */
+.menu.abierto {
+    display: block;
+}
+
+/* Sobre fondo oscuro, el contorno de foco va en rosa para que se vea */
+header a:focus-visible,
+footer a:focus-visible,
+.boton-menu:focus-visible {
+    outline: 3px solid var(--color-acento);
+    outline-offset: 2px;
+}
+
+/* En escritorio: sin botón, menú siempre visible */
+@media (min-width: 768px) {
+    .header-barra {
+        width: auto;
+    }
+    .boton-menu {
+        display: none;
+    }
+    .menu {
+        display: block;
+        width: auto;
+    }
+}

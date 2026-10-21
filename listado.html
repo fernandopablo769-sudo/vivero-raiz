@@ -8,17 +8,24 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <header>
-        <div><a href="index.html">VIVERO RAÍZ</a></div>
-        <nav>
-            <ul>
-                <li><a href="catalogo.html">Catálogo</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="login.html">Ingresar</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <div class="header-barra">
+        <a href="index.html">VIVERO RAÍZ</a>
+        <button type="button" class="boton-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+        </button>
+    </div>
+    <nav id="menu-principal" class="menu">
+        <ul>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html">Ingresar</a></li>
+        </ul>
+    </nav>
+</header>
 
     <main>
         <section>
@@ -145,5 +152,6 @@
             <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
         </section>
     </footer>
+    <script src="js/menu.js"></script>
 </body>
 </html>
