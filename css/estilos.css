@@ -8,7 +8,7 @@
     --color-fondo-oscuro: #121815;
     --color-texto: #121815;
     --color-texto-claro: #FFFFFF;
-    --color-texto-muted: #55594F;
+    --color-texto-muted: #3d4139;
     --color-primario: #1F4A3A;
     --color-primario-hover: #163428;
     --color-acento: #E35B6B;
@@ -29,7 +29,9 @@
 /* ============================================================
    BASE
    ============================================================ */
-
+html {
+    font-size: 106.25%;
+}
 body {
     font-family: var(--fuente-base);
     margin: 0;
@@ -40,6 +42,10 @@ body {
 
 h1, h2, h3, legend {
     font-family: var(--fuente-titulos);
+}
+/* Los campos y botones no heredan el tamaño de letra: se lo damos explícito */
+input, select, textarea, button {
+    font-size: 1rem;
 }
 
 /* ============================================================
@@ -303,7 +309,7 @@ label {
     display: block;
     margin-top: 10px;
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: 0.95em;
 }
 
 input, select, textarea {
@@ -381,6 +387,7 @@ input[type="radio"] {
      width: calc(100% - 12px);
     height: 180px;
     object-fit: cover;
+    margin-bottom: 28px;
 }
 
 .linea-tiempo h3 {
@@ -493,4 +500,69 @@ footer a:focus-visible,
         display: block;
         width: auto;
     }
+}
+/* --- ENTREGA 7: BARRA DE FILTROS DEL CATÁLOGO --- */
+
+.barra-filtros {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: end;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    padding: 20px;
+    margin-top: 24px;
+}
+
+.barra-filtros label {
+    margin-top: 0;
+}
+
+@media (min-width: 768px) {
+    .barra-filtros {
+        grid-template-columns: 2fr 1fr 1fr auto;
+    }
+}
+
+/* Botón secundario: mismo formato pill, pero sin relleno */
+.boton-secundario {
+    background-color: transparent;
+    color: var(--color-texto);
+    border: 1.5px solid var(--color-texto);
+    margin-top: 0;
+}
+
+.boton-secundario:hover {
+    background-color: var(--color-texto);
+    color: var(--color-texto-claro);
+}
+
+.contador {
+    margin: 20px 0 0;
+    font-weight: 600;
+    color: var(--color-texto);
+}
+
+.mensaje-vacio {
+    margin-top: 20px;
+    padding: 32px 20px;
+    text-align: center;
+    border: 1px dashed var(--color-borde);
+}
+
+/* Etiqueta de categoría en cada tarjeta */
+.etiqueta-categoria {
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--color-primario);
+    background-color: var(--color-exito-fondo);
+    padding: 3px 10px;
+    margin: 0;
+}
+
+.precio {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: var(--color-texto);
 }
