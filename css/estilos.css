@@ -205,10 +205,12 @@ main a:hover {
 .boton-eliminar {
     background-color: var(--color-peligro);
     color: var(--color-texto-claro);
+    border: 1.5px solid var(--color-peligro);
 }
 
 .boton-eliminar:hover {
     background-color: var(--color-peligro-hover);
+    border-color: var(--color-peligro-hover);
 }
 
 .boton:focus-visible,
