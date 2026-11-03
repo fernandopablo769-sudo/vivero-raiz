@@ -1,13 +1,39 @@
 // ============================================================
-// catalogo.js — Buscador, filtros y orden del catálogo (Entrega 7)
+// catalogo.js — Catálogo generado desde los datos (Entregas 7 y 8)
 // ============================================================
+
+
+// ---------- FUNCIONES QUE ARMAN EL HTML ----------
+
+// Arma el HTML de UNA tarjeta a partir de UNA planta
+function crearTarjeta(planta) {
+    return `
+        <article>
+            <img src="${planta.foto}" alt="${planta.nombre} en maceta">
+            <p class="etiqueta-categoria">${capitalizar(planta.categoria)}</p>
+            <h2>${planta.nombre}</h2>
+            <p><em>${planta.nombreCientifico}</em></p>
+            <p class="precio">${formatearPrecio(planta.precio)}</p>
+            <a href="planta.html?id=${planta.id}" class="boton">Ver ficha</a>
+        </article>
+    `;
+}
+
+// Arma la lista completa: recorre las plantas y pone todas las tarjetas en el contenedor
+function mostrarPlantas(listaDePlantas, contenedor) {
+    let html = '';
+    listaDePlantas.forEach(function (planta) {
+        html += crearTarjeta(planta);
+    });
+    contenedor.innerHTML = html;
+}
+
+
+// ---------- BUSCADOR, FILTROS Y ORDEN ----------
 
 const formFiltros = document.getElementById('form-filtros');
 
-// Solo se ejecuta si estamos en la página del catálogo
 if (formFiltros) {
-
-    // ---------- ELEMENTOS DE LA PÁGINA ----------
     const buscador = document.getElementById('buscador');
     const filtroCategoria = document.getElementById('filtro-categoria');
     const orden = document.getElementById('orden');
@@ -16,91 +42,66 @@ if (formFiltros) {
     const sinResultados = document.getElementById('sin-resultados');
     const lista = document.getElementById('lista-plantas');
 
-    // Todas las tarjetas del catálogo, guardadas en un array
-    const tarjetas = Array.from(lista.querySelectorAll('article'));
-
-
-    // ---------- FUNCIONES ----------
-
-    // Pasa un texto a minúsculas y le saca los acentos.
-    // Así "Árbol" y "arbol" se consideran iguales al buscar.
+    // Minúsculas y sin acentos: "Árbol" → "arbol"
     function normalizar(texto) {
         return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     }
 
-    // Decide qué tarjeta va primero según el orden elegido.
-    // Si devuelve un número negativo, "a" va antes que "b".
-    function compararTarjetas(a, b) {
+    // Decide qué planta va primero según el orden elegido
+    function compararPlantas(a, b) {
         if (orden.value === 'nombre-asc') {
-            return a.dataset.nombre.localeCompare(b.dataset.nombre, 'es');
+            return a.nombre.localeCompare(b.nombre, 'es');
         }
         if (orden.value === 'nombre-desc') {
-            return b.dataset.nombre.localeCompare(a.dataset.nombre, 'es');
+            return b.nombre.localeCompare(a.nombre, 'es');
         }
         if (orden.value === 'precio-asc') {
-            return Number(a.dataset.precio) - Number(b.dataset.precio);
+            return a.precio - b.precio;
         }
         // precio-desc
-        return Number(b.dataset.precio) - Number(a.dataset.precio);
+        return b.precio - a.precio;
     }
 
-    // La función principal: filtra, ordena y actualiza el contador
     function aplicarFiltros() {
         const textoBuscado = normalizar(buscador.value.trim());
         const categoria = filtroCategoria.value;
-        let visibles = 0;
 
-        // 1. Recorrer cada tarjeta y decidir si se muestra o se oculta
-        tarjetas.forEach(function (tarjeta) {
-            const nombre = normalizar(tarjeta.dataset.nombre);
-            const coincideNombre = nombre.includes(textoBuscado);
-            const coincideCategoria = categoria === 'todas' || tarjeta.dataset.categoria === categoria;
-
-            if (coincideNombre && coincideCategoria) {
-                tarjeta.hidden = false;
-                visibles++;
-            } else {
-                tarjeta.hidden = true;
-            }
+        // 1. Filtrar: quedarse solo con las plantas que coinciden
+        const filtradas = plantas.filter(function (planta) {
+            const coincideNombre = normalizar(planta.nombre).includes(textoBuscado);
+            const coincideCategoria = categoria === 'todas' || planta.categoria === categoria;
+            return coincideNombre && coincideCategoria;
         });
 
-        // 2. Ordenar las tarjetas y volver a ponerlas en la grilla en ese orden
-        const ordenadas = tarjetas.slice().sort(compararTarjetas);
-        ordenadas.forEach(function (tarjeta) {
-            lista.appendChild(tarjeta);
-        });
+        // 2. Ordenar las que quedaron
+        filtradas.sort(compararPlantas);
 
-        // 3. Actualizar el contador y el mensaje de "no encontramos"
-        if (visibles === 1) {
+        // 3. Dibujar las tarjetas
+        mostrarPlantas(filtradas, lista);
+
+        // 4. Contador y mensaje de "no encontramos"
+        if (filtradas.length === 1) {
             contador.textContent = 'Mostrando 1 planta';
         } else {
-            contador.textContent = 'Mostrando ' + visibles + ' plantas';
+            contador.textContent = 'Mostrando ' + filtradas.length + ' plantas';
         }
-        sinResultados.hidden = visibles > 0;
+        sinResultados.hidden = filtradas.length > 0;
     }
 
-
-    // ---------- EVENTOS ----------
-
-    // Mientras se escribe en el buscador
     buscador.addEventListener('input', aplicarFiltros);
-
-    // Cuando se cambia la categoría o el orden
     filtroCategoria.addEventListener('change', aplicarFiltros);
     orden.addEventListener('change', aplicarFiltros);
 
-    // Botón "Limpiar filtros": vuelve todo al estado inicial
     botonLimpiar.addEventListener('click', function () {
         formFiltros.reset();
         aplicarFiltros();
         buscador.focus();
     });
 
-    // Si alguien aprieta Enter en el buscador, que no se recargue la página
     formFiltros.addEventListener('submit', function (evento) {
         evento.preventDefault();
     });
 
-    // Al cargar la página, aplicamos el orden inicial (Nombre A a Z)
+    // Al cargar la página, dibujamos el catálogo por primera vez
     aplicarFiltros();
 }
