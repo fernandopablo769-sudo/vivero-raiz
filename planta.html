@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vivero Raíz - Cactus de la suerte</title>
+    <title>Vivero Raíz - Ficha de planta</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -28,49 +28,13 @@
 </header>
 
     <main>
-        <h1>Cactus de la suerte</h1>
-        <p><em>Euphorbia trigona</em></p>
+        <main>
+    <article id="ficha-planta"></article>
 
-        <section class="galeria">
-            <img src="img/cactus-suerte.jpg" alt="Cactus de la suerte en una maceta baja junto a otros cactus de colores">
-        </section>
+    <p id="ficha-no-encontrada" class="mensaje-error" hidden>No encontramos esa planta. Puede que el enlace esté incompleto o que la planta ya no esté en el catálogo.</p>
 
-        <section>
-            <h2>Especificaciones</h2>
-            <table class="tabla-ficha">
-                <tr>
-                    <th scope="row">Categoría</th>
-                    <td>Suculenta</td>
-                </tr>
-                <tr>
-                    <th scope="row">Luz</th>
-                    <td>Sol pleno</td>
-                </tr>
-                <tr>
-                    <th scope="row">Riego</th>
-                    <td>Bajo</td>
-                </tr>
-                <tr>
-                    <th scope="row">Apta mascotas</th>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <th scope="row">Precio</th>
-                    <td>$ 1.500</td>
-                </tr>
-                <tr>
-                    <th scope="row">Stock</th>
-                    <td>12 unidades</td>
-                </tr>
-            </table>
-        </section>
-
-        <section>
-            <h2>Cuidados particulares</h2>
-            <p>Requiere muy poca agua. Regar solo cuando la tierra esté completamente seca. Prefiere estar cerca de una ventana con luz natural abundante.</p>
-        </section>
-
-        <a href="catalogo.html" class="boton">Volver al catálogo</a>
+    <a href="catalogo.html" class="boton">Volver al catálogo</a>
+</main>
     </main>
 
     <footer>
@@ -92,6 +56,9 @@
             <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
         </section>
     </footer>
-    <script src="js/menu.js"></script>
+   <script src="js/datos.js"></script>
+<script src="js/utilidades.js"></script>
+<script src="js/planta.js"></script>
+<script src="js/menu.js"></script>
 </body>
 </html>
