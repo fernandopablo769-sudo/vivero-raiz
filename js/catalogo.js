@@ -1,11 +1,10 @@
 // ============================================================
-// catalogo.js — Catálogo generado desde los datos (Entregas 7 y 8)
+// catalogo.js — Catálogo con datos de la API (Entregas 7, 8 y 9)
 // ============================================================
 
 
-// ---------- FUNCIONES QUE ARMAN EL HTML ----------
+// ---------- FUNCIONES QUE ARMAN EL HTML (sin cambios desde la Entrega 8) ----------
 
-// Arma el HTML de UNA tarjeta a partir de UNA planta
 function crearTarjeta(planta) {
     return `
         <article>
@@ -19,7 +18,6 @@ function crearTarjeta(planta) {
     `;
 }
 
-// Arma la lista completa: recorre las plantas y pone todas las tarjetas en el contenedor
 function mostrarPlantas(listaDePlantas, contenedor) {
     let html = '';
     listaDePlantas.forEach(function (planta) {
@@ -29,7 +27,7 @@ function mostrarPlantas(listaDePlantas, contenedor) {
 }
 
 
-// ---------- BUSCADOR, FILTROS Y ORDEN ----------
+// ---------- CATÁLOGO ----------
 
 const formFiltros = document.getElementById('form-filtros');
 
@@ -40,14 +38,17 @@ if (formFiltros) {
     const botonLimpiar = document.getElementById('limpiar-filtros');
     const contador = document.getElementById('contador-resultados');
     const sinResultados = document.getElementById('sin-resultados');
+    const cargando = document.getElementById('cargando');
+    const errorCarga = document.getElementById('error-carga');
     const lista = document.getElementById('lista-plantas');
 
-    // Minúsculas y sin acentos: "Árbol" → "arbol"
+    // Acá se guardan las plantas cuando llegan de la API
+    let plantasCatalogo = [];
+
     function normalizar(texto) {
         return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     }
 
-    // Decide qué planta va primero según el orden elegido
     function compararPlantas(a, b) {
         if (orden.value === 'nombre-asc') {
             return a.nombre.localeCompare(b.nombre, 'es');
@@ -58,7 +59,6 @@ if (formFiltros) {
         if (orden.value === 'precio-asc') {
             return a.precio - b.precio;
         }
-        // precio-desc
         return b.precio - a.precio;
     }
 
@@ -66,20 +66,15 @@ if (formFiltros) {
         const textoBuscado = normalizar(buscador.value.trim());
         const categoria = filtroCategoria.value;
 
-        // 1. Filtrar: quedarse solo con las plantas que coinciden
-        const filtradas = plantas.filter(function (planta) {
+        const filtradas = plantasCatalogo.filter(function (planta) {
             const coincideNombre = normalizar(planta.nombre).includes(textoBuscado);
             const coincideCategoria = categoria === 'todas' || planta.categoria === categoria;
             return coincideNombre && coincideCategoria;
         });
 
-        // 2. Ordenar las que quedaron
         filtradas.sort(compararPlantas);
-
-        // 3. Dibujar las tarjetas
         mostrarPlantas(filtradas, lista);
 
-        // 4. Contador y mensaje de "no encontramos"
         if (filtradas.length === 1) {
             contador.textContent = 'Mostrando 1 planta';
         } else {
@@ -88,20 +83,37 @@ if (formFiltros) {
         sinResultados.hidden = filtradas.length > 0;
     }
 
-    buscador.addEventListener('input', aplicarFiltros);
-    filtroCategoria.addEventListener('change', aplicarFiltros);
-    orden.addEventListener('change', aplicarFiltros);
+    // Los filtros se activan recién cuando hay datos para filtrar
+    function activarFiltros() {
+        buscador.addEventListener('input', aplicarFiltros);
+        filtroCategoria.addEventListener('change', aplicarFiltros);
+        orden.addEventListener('change', aplicarFiltros);
 
-    botonLimpiar.addEventListener('click', function () {
-        formFiltros.reset();
-        aplicarFiltros();
-        buscador.focus();
-    });
+        botonLimpiar.addEventListener('click', function () {
+            formFiltros.reset();
+            aplicarFiltros();
+            buscador.focus();
+        });
+    }
 
+    // Enter en el buscador no recarga la página
     formFiltros.addEventListener('submit', function (evento) {
         evento.preventDefault();
     });
 
-    // Al cargar la página, dibujamos el catálogo por primera vez
-    aplicarFiltros();
+    // Pide las plantas a la API y arma el catálogo
+    async function iniciarCatalogo() {
+        try {
+            plantasCatalogo = await obtenerPlantas();
+            cargando.hidden = true;
+            aplicarFiltros();
+            activarFiltros();
+        } catch (error) {
+            console.error('Error al cargar el catálogo:', error);
+            cargando.hidden = true;
+            errorCarga.hidden = false;
+        }
+    }
+
+    iniciarCatalogo();
 }

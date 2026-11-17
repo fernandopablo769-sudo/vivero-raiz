@@ -574,3 +574,10 @@ footer a:focus-visible,
     font-size: 1.1em;
     color: var(--color-texto);
 }
+/* --- ENTREGA 9: ESTADO DE CARGA --- */
+.mensaje-cargando {
+    margin-top: 20px;
+    padding: 32px 20px;
+    text-align: center;
+    color: var(--color-texto-muted);
+}

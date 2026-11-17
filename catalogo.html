@@ -58,7 +58,11 @@
             <button type="button" id="limpiar-filtros" class="boton boton-secundario">Limpiar filtros</button>
         </form>
 
-        <p id="contador-resultados" class="contador" aria-live="polite">Mostrando 6 plantas</p>
+        <p id="contador-resultados" class="contador" aria-live="polite"></p>
+
+<p id="cargando" class="mensaje-cargando">Cargando plantas…</p>
+
+<p id="error-carga" class="mensaje-error" hidden>No pudimos cargar el catálogo. Revisá tu conexión y recargá la página para volver a intentar.</p>
 
         <p id="sin-resultados" class="mensaje-vacio" hidden>No encontramos plantas con ese criterio. Probá con otro nombre o elegí otra categoría.</p>
 
@@ -90,8 +94,8 @@
             <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
         </section>
     </footer>
-  <script src="js/datos.js"></script>
-<script src="js/utilidades.js"></script>
+  <script src="js/utilidades.js"></script>
+<script src="js/api.js"></script>
 <script src="js/catalogo.js"></script>
 <script src="js/menu.js"></script>
     
