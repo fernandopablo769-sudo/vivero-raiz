@@ -38,6 +38,9 @@ body {
     padding: 0;
     background-color: var(--color-fondo);
     color: var(--color-texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1, h2, h3, legend {
@@ -55,7 +58,7 @@ input, select, textarea, button {
 header, footer {
     background-color: var(--color-fondo-oscuro);
     color: var(--color-texto-claro);
-    padding: 20px 24px;
+    padding: 20px max(24px, calc((100% - 1100px) / 2 + 24px));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,6 +133,9 @@ main {
     max-width: 1100px;
     margin: 0 auto;
     padding: 40px 24px 64px;
+        flex: 1;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 img {
