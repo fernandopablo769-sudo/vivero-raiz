@@ -592,3 +592,31 @@ footer a:focus-visible,
     width: 40px;
     height: 40px;
 }
+/* --- ENTREGA 10: FORMULARIO DE PLANTA --- */
+
+/* Título de un grupo de opciones (radios o checkboxes) */
+.etiqueta-grupo {
+    margin: 10px 0 0;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: var(--color-texto);
+}
+
+/* Botones de Guardar y Cancelar, uno al lado del otro */
+.acciones-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.acciones-form .boton {
+    margin-top: 0;
+}
+
+/* Botón desactivado mientras se guarda */
+.boton:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}

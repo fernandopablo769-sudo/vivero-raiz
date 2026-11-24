@@ -30,3 +30,43 @@ async function obtenerPlanta(id) {
 
     return await respuesta.json();
 }
+// Crea una planta nueva. Devuelve la planta creada, con su id.
+async function crearPlanta(datos) {
+    const respuesta = await fetch(URL_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+    });
+
+    if (!respuesta.ok) {
+        throw new Error('La API respondió con el estado ' + respuesta.status);
+    }
+
+    return await respuesta.json();
+}
+
+// Reemplaza los datos de una planta existente.
+async function actualizarPlanta(id, datos) {
+    const respuesta = await fetch(URL_API + '/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+    });
+
+    if (!respuesta.ok) {
+        throw new Error('La API respondió con el estado ' + respuesta.status);
+    }
+
+    return await respuesta.json();
+}
+
+// Borra una planta.
+async function eliminarPlanta(id) {
+    const respuesta = await fetch(URL_API + '/' + id, {
+        method: 'DELETE'
+    });
+
+    if (!respuesta.ok) {
+        throw new Error('La API respondió con el estado ' + respuesta.status);
+    }
+}

@@ -9,108 +9,129 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-<header>
-    <div class="header-barra">
-        <a href="index.html" class="marca"><img src="img/logo.svg" alt="" width="40" height="40"> VIVERO RAÍZ</a>
-        <button type="button" class="boton-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                <path d="M4 7h16M4 12h16M4 17h16"/>
-            </svg>
-        </button>
-    </div>
-    <nav id="menu-principal" class="menu">
-        <ul>
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="login.html">Ingresar</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <div class="header-barra">
+            <a href="index.html" class="marca"><img src="img/logo.svg" alt="" width="40" height="40"> VIVERO RAÍZ</a>
+            <button type="button" class="boton-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                </svg>
+            </button>
+        </div>
+        <nav id="menu-principal" class="menu">
+            <ul>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Ingresar</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
-        <section>
-            <h1>Alta de planta</h1>
-            <p>Completá los datos para sumar una nueva planta al catálogo.</p>
+        <h1 id="titulo-form">Alta de planta</h1>
+        <p id="bajada-form">Completá los datos para sumar una nueva planta al catálogo. Los campos con * son obligatorios.</p>
 
-            <form action="#" method="POST">
-                <input type="hidden" id="id-planta" name="id">
+        <p id="cargando-form" class="mensaje-cargando" hidden>Cargando los datos de la planta…</p>
+        <p id="form-error" class="mensaje-error" hidden></p>
 
-                <fieldset>
-                    <legend>Datos generales</legend>
+        <form id="form-planta" action="#" method="POST" novalidate>
+            <fieldset>
+                <legend>Datos generales</legend>
 
-                    <label for="nombre-planta">Nombre *</label>
-                    <input type="text" id="nombre-planta" name="nombre" required>
-
-                    <label for="nombre-cientifico">Nombre científico *</label>
-                    <input type="text" id="nombre-cientifico" name="nombreCientifico" required>
-
-                    <label for="categoria-planta">Categoría *</label>
-                    <select id="categoria-planta" name="categoria" required>
-                        <option value="">Elegí una opción</option>
-                        <option value="interior">Interior</option>
-                        <option value="exterior">Exterior</option>
-                        <option value="suculenta">Suculenta</option>
-                        <option value="aromatica">Aromática</option>
-                    </select>
-
-                    <label for="foto-planta">URL de la foto</label>
-                    <input type="url" id="foto-planta" name="foto" placeholder="https://...">
-                </fieldset>
-
-                <fieldset>
-                    <legend>Cuidados</legend>
-
-                    <label>Luz *</label>
-                    <div class="grupo-opciones">
-                        <label><input type="radio" name="luz" value="sol-pleno" required> Sol pleno</label>
-                        <label><input type="radio" name="luz" value="media-sombra"> Media sombra</label>
-                        <label><input type="radio" name="luz" value="sombra"> Sombra</label>
+                <div class="fila-campos">
+                    <div>
+                        <label for="nombre-planta">Nombre *</label>
+                        <input type="text" id="nombre-planta" name="nombre" required>
+                        <p class="error-campo" id="error-nombre-planta"></p>
                     </div>
-
-                    <label for="riego-planta">Riego *</label>
-                    <select id="riego-planta" name="riego" required>
-                        <option value="">Elegí una opción</option>
-                        <option value="bajo">Bajo</option>
-                        <option value="medio">Medio</option>
-                        <option value="alto">Alto</option>
-                    </select>
-
-                    <label>¿Apta para mascotas? *</label>
-                    <div class="grupo-opciones">
-                        <label><input type="radio" name="apta-mascotas" value="si" required> Sí</label>
-                        <label><input type="radio" name="apta-mascotas" value="no"> No</label>
+                    <div>
+                        <label for="nombre-cientifico">Nombre científico *</label>
+                        <input type="text" id="nombre-cientifico" name="nombreCientifico" required>
+                        <p class="error-campo" id="error-nombre-cientifico"></p>
                     </div>
+                </div>
 
-                    <label>Etiquetas</label>
-                    <div class="grupo-opciones">
-                        <label><input type="checkbox" name="etiquetas" value="purificadora"> Purificadora</label>
-                        <label><input type="checkbox" name="etiquetas" value="floracion"> Floración</label>
-                        <label><input type="checkbox" name="etiquetas" value="colgante"> Colgante</label>
-                        <label><input type="checkbox" name="etiquetas" value="resistente"> Resistente</label>
+                <label for="categoria-planta">Categoría *</label>
+                <select id="categoria-planta" name="categoria" required>
+                    <option value="">Elegí una opción</option>
+                    <option value="interior">Interior</option>
+                    <option value="exterior">Exterior</option>
+                    <option value="suculenta">Suculenta</option>
+                    <option value="aromática">Aromática</option>
+                </select>
+                <p class="error-campo" id="error-categoria-planta"></p>
+
+                <label for="foto-planta">Foto</label>
+                <input type="text" id="foto-planta" name="foto" placeholder="img/nombre-de-la-foto.jpg o https://...">
+                <p class="ayuda-campo">Si la dejás vacía, se muestra el logo del vivero.</p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Cuidados</legend>
+
+                <p class="etiqueta-grupo" id="titulo-luz">Luz *</p>
+                <div class="grupo-opciones" id="grupo-luz" role="radiogroup" aria-labelledby="titulo-luz">
+                    <label><input type="radio" name="luz" value="sol pleno"> Sol pleno</label>
+                    <label><input type="radio" name="luz" value="media sombra"> Media sombra</label>
+                    <label><input type="radio" name="luz" value="sombra"> Sombra</label>
+                </div>
+                <p class="error-campo" id="error-grupo-luz"></p>
+
+                <label for="riego-planta">Riego *</label>
+                <select id="riego-planta" name="riego" required>
+                    <option value="">Elegí una opción</option>
+                    <option value="bajo">Bajo</option>
+                    <option value="medio">Medio</option>
+                    <option value="alto">Alto</option>
+                </select>
+                <p class="error-campo" id="error-riego-planta"></p>
+
+                <p class="etiqueta-grupo" id="titulo-mascotas">¿Apta para mascotas? *</p>
+                <div class="grupo-opciones" id="grupo-mascotas" role="radiogroup" aria-labelledby="titulo-mascotas">
+                    <label><input type="radio" name="aptaMascotas" value="si"> Sí</label>
+                    <label><input type="radio" name="aptaMascotas" value="no"> No</label>
+                </div>
+                <p class="error-campo" id="error-grupo-mascotas"></p>
+
+                <p class="etiqueta-grupo" id="titulo-etiquetas">Etiquetas</p>
+                <div class="grupo-opciones" role="group" aria-labelledby="titulo-etiquetas">
+                    <label><input type="checkbox" name="etiquetas" value="purificadora"> Purificadora</label>
+                    <label><input type="checkbox" name="etiquetas" value="floración"> Floración</label>
+                    <label><input type="checkbox" name="etiquetas" value="colgante"> Colgante</label>
+                    <label><input type="checkbox" name="etiquetas" value="resistente"> Resistente</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Precio y stock</legend>
+
+                <div class="fila-campos">
+                    <div>
+                        <label for="precio-planta">Precio *</label>
+                        <input type="number" id="precio-planta" name="precio" min="0" step="0.01" required>
+                        <p class="error-campo" id="error-precio-planta"></p>
                     </div>
-                </fieldset>
+                    <div>
+                        <label for="stock-planta">Stock *</label>
+                        <input type="number" id="stock-planta" name="stock" min="0" step="1" required>
+                        <p class="error-campo" id="error-stock-planta"></p>
+                    </div>
+                </div>
 
-                <fieldset>
-                    <legend>Precio y stock</legend>
+                <label for="fecha-ingreso">Fecha de ingreso *</label>
+                <input type="date" id="fecha-ingreso" name="fechaIngreso" required>
+                <p class="error-campo" id="error-fecha-ingreso"></p>
+            </fieldset>
 
-                    <label for="precio-planta">Precio *</label>
-                    <input type="number" id="precio-planta" name="precio" min="0" step="0.01" required>
+            <label for="notas-planta">Notas y cuidados particulares</label>
+            <textarea id="notas-planta" name="notas" rows="4"></textarea>
 
-                    <label for="stock-planta">Stock *</label>
-                    <input type="number" id="stock-planta" name="stock" min="0" step="1" required>
-
-                    <label for="fecha-ingreso">Fecha de ingreso *</label>
-                    <input type="date" id="fecha-ingreso" name="fechaIngreso" required>
-                </fieldset>
-
-                <label for="notas-planta">Notas / cuidados particulares</label>
-                <textarea id="notas-planta" name="notas" rows="4"></textarea>
-
-                <button type="submit" class="boton">Guardar planta</button>
-                <a href="listado.html">Cancelar</a>
-            </form>
-        </section>
+            <div class="acciones-form">
+                <button type="submit" id="boton-guardar" class="boton">Guardar planta</button>
+                <a href="listado.html" class="boton boton-secundario">Cancelar</a>
+            </div>
+        </form>
     </main>
 
     <footer>
@@ -132,6 +153,10 @@
             <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
         </section>
     </footer>
+
+    <script src="js/validaciones.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/planta-form.js"></script>
     <script src="js/menu.js"></script>
 </body>
 </html>
