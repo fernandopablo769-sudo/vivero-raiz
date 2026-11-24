@@ -3,17 +3,19 @@
 // ============================================================
 
 
-// ---------- FUNCIONES QUE ARMAN EL HTML (sin cambios desde la Entrega 8) ----------
+// ---------- FUNCIONES QUE ARMAN EL HTML ----------
 
 function crearTarjeta(planta) {
+    const nombre = escaparHTML(planta.nombre);
+
     return `
         <article>
-            <img src="${planta.foto}" alt="${planta.nombre} en maceta">
-            <p class="etiqueta-categoria">${capitalizar(planta.categoria)}</p>
-            <h2>${planta.nombre}</h2>
-            <p><em>${planta.nombreCientifico}</em></p>
+            <img src="${escaparHTML(planta.foto)}" alt="${nombre} en maceta">
+            <p class="etiqueta-categoria">${escaparHTML(capitalizar(planta.categoria))}</p>
+            <h2>${nombre}</h2>
+            <p><em>${escaparHTML(planta.nombreCientifico)}</em></p>
             <p class="precio">${formatearPrecio(planta.precio)}</p>
-            <a href="planta.html?id=${planta.id}" class="boton">Ver ficha</a>
+            <a href="planta.html?id=${escaparHTML(planta.id)}" class="boton">Ver ficha</a>
         </article>
     `;
 }

@@ -33,12 +33,15 @@
             <h1>Intranet · Plantas</h1>
             <p>Gestioná el catálogo: editá precios, actualizá el stock o eliminá una ficha.</p>
 
-            <p id="listado-exito" class="mensaje-exito" hidden>Planta actualizada correctamente.</p>
+            <p id="listado-exito" class="mensaje-exito" aria-live="polite" hidden></p>
+            <p id="listado-error" class="mensaje-error" aria-live="polite" hidden></p>
 
             <a href="planta-form.html" class="boton">Agregar planta</a>
-<p id="cargando" class="mensaje-cargando">Cargando plantas…</p>
 
-<p id="error-carga" class="mensaje-error" hidden>No pudimos cargar el listado. Revisá tu conexión y recargá la página para volver a intentar.</p>
+            <p id="cargando" class="mensaje-cargando">Cargando plantas…</p>
+
+            <p id="error-carga" class="mensaje-error" hidden>No pudimos cargar el listado. Revisá tu conexión y recargá la página para volver a intentar.</p>
+
             <div class="tabla-scroll">
                 <table>
                     <thead>
@@ -51,9 +54,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tbody id="tabla-plantas"></tbody>
-                    </tbody>
+                    <tbody id="tabla-plantas"></tbody>
                 </table>
             </div>
         </section>
@@ -78,9 +79,10 @@
             <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
         </section>
     </footer>
-  <script src="js/utilidades.js"></script>
-<script src="js/api.js"></script>
-<script src="js/listado.js"></script>
-<script src="js/menu.js"></script>
+
+    <script src="js/utilidades.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/listado.js"></script>
+    <script src="js/menu.js"></script>
 </body>
 </html>
