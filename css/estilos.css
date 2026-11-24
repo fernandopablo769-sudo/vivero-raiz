@@ -581,3 +581,14 @@ footer a:focus-visible,
     text-align: center;
     color: var(--color-texto-muted);
 }
+/* --- LOGO EN EL HEADER --- */
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.marca img {
+    width: 40px;
+    height: 40px;
+}
