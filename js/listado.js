@@ -33,5 +33,20 @@ function mostrarTabla(listaDePlantas, cuerpoTabla) {
 const cuerpoTabla = document.getElementById('tabla-plantas');
 
 if (cuerpoTabla) {
-    mostrarTabla(plantas, cuerpoTabla);
+    const cargando = document.getElementById('cargando');
+    const errorCarga = document.getElementById('error-carga');
+
+    async function iniciarListado() {
+        try {
+            const listaDePlantas = await obtenerPlantas();
+            cargando.hidden = true;
+            mostrarTabla(listaDePlantas, cuerpoTabla);
+        } catch (error) {
+            console.error('Error al cargar el listado:', error);
+            cargando.hidden = true;
+            errorCarga.hidden = false;
+        }
+    }
+
+    iniciarListado();
 }

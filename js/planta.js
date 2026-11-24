@@ -42,20 +42,38 @@ function crearFicha(planta) {
 const contenedorFicha = document.getElementById('ficha-planta');
 
 if (contenedorFicha) {
-    // 1. Leer el id de la URL: "planta.html?id=3" → 3
-    const parametros = new URLSearchParams(window.location.search);
-    const id = Number(parametros.get('id'));
+    const cargando = document.getElementById('cargando');
+    const noEncontrada = document.getElementById('ficha-no-encontrada');
+    const errorCarga = document.getElementById('error-carga');
 
-    // 2. Buscar en el array la planta que tiene ese id
-    const planta = plantas.find(function (p) {
-        return p.id === id;
-    });
+    async function iniciarFicha() {
+        // Leer el id de la URL: "planta.html?id=3" → "3"
+        const parametros = new URLSearchParams(window.location.search);
+        const id = parametros.get('id');
 
-    // 3. Si existe, mostramos su ficha; si no, el mensaje de error
-    if (planta) {
-        contenedorFicha.innerHTML = crearFicha(planta);
-        document.title = 'Vivero Raíz - ' + planta.nombre;
-    } else {
-        document.getElementById('ficha-no-encontrada').hidden = false;
+        // Si la URL no trae id, no tiene sentido consultar la API
+        if (!id) {
+            cargando.hidden = true;
+            noEncontrada.hidden = false;
+            return;
+        }
+
+        try {
+            const planta = await obtenerPlanta(id);
+            cargando.hidden = true;
+
+            if (planta) {
+                contenedorFicha.innerHTML = crearFicha(planta);
+                document.title = 'Vivero Raíz - ' + planta.nombre;
+            } else {
+                noEncontrada.hidden = false;
+            }
+        } catch (error) {
+            console.error('Error al cargar la ficha:', error);
+            cargando.hidden = true;
+            errorCarga.hidden = false;
+        }
     }
+
+    iniciarFicha();
 }
