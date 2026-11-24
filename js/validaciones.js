@@ -95,11 +95,16 @@ if (formContacto) {
 const formLogin = document.getElementById('form-login');
 
 if (formLogin) {
-    formLogin.addEventListener('submit', function (evento) {
+    const mensajeLogin = document.getElementById('login-error');
+    const botonIngresar = formLogin.querySelector('button[type="submit"]');
+
+    formLogin.addEventListener('submit', async function (evento) {
         evento.preventDefault();
+        mensajeLogin.hidden = true;
 
         const correo = document.getElementById('correo-login');
         const contrasena = document.getElementById('contrasena');
+        const mantenerSesion = document.getElementById('mantener-sesion');
 
         let todoBien = true;
 
@@ -111,13 +116,41 @@ if (formLogin) {
             todoBien = false;
         }
 
-        if (todoBien) {
-            // Provisorio: hasta la Entrega 11 no hay usuarios reales,
-            // así que con los campos completos pasamos directo a la intranet.
-            window.location.href = 'listado.html';
+        if (!todoBien) {
+            return;
         }
+
+        // Los campos están completos: consultamos la API
+        botonIngresar.disabled = true;
+        botonIngresar.textContent = 'Ingresando…';
+
+        try {
+            const usuario = await buscarUsuarioPorCorreo(correo.value.trim());
+
+            if (usuario && usuario.contrasena === contrasena.value) {
+                guardarSesion(usuario, mantenerSesion.checked);
+
+                // Si veníamos de una página protegida, volvemos a ella
+                const volver = new URLSearchParams(window.location.search).get('volver');
+                window.location.href = destinoSeguro(volver);
+                return;
+            }
+
+            // El mismo mensaje si el correo no existe o si la contraseña está mal:
+            // así no le decimos a un extraño qué correos están registrados
+            mensajeLogin.textContent = 'El correo o la contraseña no coinciden. Probá de nuevo.';
+            mensajeLogin.hidden = false;
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            mensajeLogin.textContent = 'No pudimos verificar tus datos. Revisá tu conexión e intentá de nuevo.';
+            mensajeLogin.hidden = false;
+        }
+
+        botonIngresar.disabled = false;
+        botonIngresar.textContent = 'Ingresar';
     });
 }
+
 // ---------- FORMULARIO DE REGISTRO ----------
 
 const formRegistro = document.getElementById('form-registro');

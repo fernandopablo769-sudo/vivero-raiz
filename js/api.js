@@ -30,6 +30,7 @@ async function obtenerPlanta(id) {
 
     return await respuesta.json();
 }
+
 // Crea una planta nueva. Devuelve la planta creada, con su id.
 async function crearPlanta(datos) {
     const respuesta = await fetch(URL_API, {
@@ -69,4 +70,35 @@ async function eliminarPlanta(id) {
     if (!respuesta.ok) {
         throw new Error('La API respondió con el estado ' + respuesta.status);
     }
+}
+
+
+// ============================================================
+// USUARIOS (Entrega 11)
+// ============================================================
+
+const URL_USUARIOS = 'https://6afbabd1892984c4494a062d.mockapi.io/usuarios';
+
+// Busca un usuario por su correo. Devuelve el usuario, o null si no existe.
+async function buscarUsuarioPorCorreo(correo) {
+    const respuesta = await fetch(URL_USUARIOS + '?correo=' + encodeURIComponent(correo));
+
+    // MockAPI responde 404 cuando el filtro no encuentra a nadie
+    if (respuesta.status === 404) {
+        return null;
+    }
+
+    if (!respuesta.ok) {
+        throw new Error('La API respondió con el estado ' + respuesta.status);
+    }
+
+    const usuarios = await respuesta.json();
+
+    // El filtro de MockAPI también trae coincidencias parciales,
+    // así que confirmamos que el correo sea exactamente el mismo
+    const usuario = usuarios.find(function (u) {
+        return u.correo.toLowerCase() === correo.toLowerCase();
+    });
+
+    return usuario || null;
 }
