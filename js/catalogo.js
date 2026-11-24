@@ -103,11 +103,24 @@ if (formFiltros) {
         evento.preventDefault();
     });
 
+    // Si se llega desde el inicio con "catalogo.html?categoria=interior",
+    // el filtro de categoría arranca con esa opción elegida
+    function aplicarCategoriaDeLaURL() {
+        const categoria = new URLSearchParams(window.location.search).get('categoria');
+        const existe = Array.from(filtroCategoria.options).some(function (opcion) {
+            return opcion.value === categoria;
+        });
+        if (existe) {
+            filtroCategoria.value = categoria;
+        }
+    }
+
     // Pide las plantas a la API y arma el catálogo
     async function iniciarCatalogo() {
         try {
             plantasCatalogo = await obtenerPlantas();
             cargando.hidden = true;
+            aplicarCategoriaDeLaURL();
             aplicarFiltros();
             activarFiltros();
         } catch (error) {

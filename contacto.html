@@ -28,44 +28,68 @@
     </nav>
 </header>
     <main>
-        <section>
-            <h1>Contacto</h1>
-            <p>Escribinos por encargos, envíos o asesoramiento. Respondemos dentro de las 48 horas hábiles.</p>
-            
-            <form id="form-contacto" action="#" method="POST" novalidate>
-    <p id="contacto-exito" class="mensaje-exito" hidden>¡Gracias! Recibimos tu consulta y te respondemos dentro de las 48 horas hábiles.</p>
+        <h1>Contacto</h1>
+        <p>Escribinos por encargos, envíos o asesoramiento. Respondemos dentro de las 48 horas hábiles.</p>
 
-    <label for="nombre">Nombre y apellido *</label>
-    <input type="text" id="nombre" name="nombre" required>
-    <p class="error-campo" id="error-nombre"></p>
+        <div class="contacto-grilla">
+            <section aria-label="Formulario de consulta">
+                <form id="form-contacto" action="#" method="POST" novalidate>
+                    <p id="contacto-exito" class="mensaje-exito" hidden>¡Gracias! Recibimos tu consulta y te respondemos dentro de las 48 horas hábiles.</p>
 
-    <label for="correo">Correo electrónico *</label>
-    <input type="email" id="correo" name="correo" required>
-    <p class="error-campo" id="error-correo"></p>
+                    <label for="nombre">Nombre y apellido *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    <p class="error-campo" id="error-nombre"></p>
 
-    <label for="telefono">Teléfono</label>
-    <input type="tel" id="telefono" name="telefono">
+                    <label for="correo">Correo electrónico *</label>
+                    <input type="email" id="correo" name="correo" required>
+                    <p class="error-campo" id="error-correo"></p>
 
-    <label for="motivo">Motivo *</label>
-    <select id="motivo" name="motivo" required>
-        <option value="">Elegí un motivo</option>
-        <option value="encargo">Encargo</option>
-        <option value="envio">Envío</option>
-        <option value="asesoramiento">Asesoramiento</option>
-    </select>
-    <p class="error-campo" id="error-motivo"></p>
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono">
 
-    <label for="mensaje">Mensaje *</label>
-    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-    <p class="error-campo" id="error-mensaje"></p>
+                    <label for="motivo">Motivo *</label>
+                    <select id="motivo" name="motivo" required>
+                        <option value="">Elegí un motivo</option>
+                        <option value="encargo">Encargo</option>
+                        <option value="envio">Envío</option>
+                        <option value="asesoramiento">Asesoramiento</option>
+                    </select>
+                    <p class="error-campo" id="error-motivo"></p>
 
-    <div class="grupo-opciones">
-        <label><input type="checkbox" id="novedades" name="novedades"> Quiero recibir las novedades del vivero</label>
-    </div>
+                    <label for="mensaje">Mensaje *</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                    <p class="error-campo" id="error-mensaje"></p>
 
-    <button type="submit" class="boton">Enviar consulta</button>
-</form>
-        </section>
+                    <div class="grupo-opciones">
+                        <label><input type="checkbox" id="novedades" name="novedades"> Quiero recibir las novedades del vivero</label>
+                    </div>
+
+                    <button type="submit" class="boton">Enviar consulta</button>
+                </form>
+            </section>
+
+            <aside class="panel-contacto">
+                <h2>Dónde estamos</h2>
+                <p>Ruta 25 km 4,5, Escobar, Buenos Aires<br>(011) 4444-5566 · <a href="mailto:hola@viveroraiz.com">hola@viveroraiz.com</a></p>
+
+                <h2>Horarios de atención</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Día</th>
+                            <th scope="col">Horario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Lunes a viernes</td><td>9 a 18</td></tr>
+                        <tr><td>Sábados</td><td>9 a 13</td></tr>
+                        <tr><td>Domingos</td><td>Cerrado</td></tr>
+                    </tbody>
+                </table>
+
+                <iframe class="mapa" title="Mapa con la ubicación del vivero en Escobar" src="https://www.google.com/maps?q=Ruta+25,+Escobar,+Buenos+Aires&amp;output=embed" loading="lazy"></iframe>
+            </aside>
+        </div>
     </main>
 
     <footer>
@@ -87,6 +111,8 @@
             <p>Lunes a viernes de 9 a 18<br>Sábados de 9 a 13<br>Domingos cerrado</p>
         </section>
     </footer>
+
+    <script src="js/sesion.js"></script>
     <script src="js/validaciones.js"></script>
     <script src="js/menu.js"></script>
 </body>

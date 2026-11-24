@@ -112,17 +112,15 @@ footer ul {
         flex-direction: row;
         align-items: center;
     }
-    /* Texto del footer legible sobre el fondo oscuro */
-footer p {
-    color: rgba(255, 255, 255, 0.75);
-}
-
-/* En escritorio, las 3 columnas del footer alineadas arriba */
-@media (min-width: 768px) {
+    /* En escritorio, las 3 columnas del footer alineadas arriba */
     footer {
         align-items: flex-start;
     }
 }
+
+/* Texto del footer legible sobre el fondo oscuro (en todos los tamaños) */
+footer p {
+    color: rgba(255, 255, 255, 0.75);
 }
 
 /* ============================================================
@@ -177,6 +175,12 @@ main a {
 
 main a:hover {
     text-decoration: underline;
+}
+
+/* Aire entre las secciones grandes de una página */
+main > section + section,
+main > section + aside {
+    margin-top: 56px;
 }
 
 /* ============================================================
@@ -368,6 +372,7 @@ input[type="radio"] {
    ============================================================ */
 
 .contenedor-catalogo,
+.contenedor-categorias,
 .contenedor-equipo,
 .linea-tiempo {
     display: grid;
@@ -377,6 +382,7 @@ input[type="radio"] {
 }
 
 .contenedor-catalogo article,
+.contenedor-categorias article,
 .contenedor-equipo article,
 .linea-tiempo article {
     background-color: var(--color-superficie);
@@ -391,6 +397,7 @@ input[type="radio"] {
 }
 
 .contenedor-catalogo article img,
+.contenedor-categorias img,
 .contenedor-equipo img {
      width: calc(100% - 12px);
     height: 180px;
@@ -405,6 +412,7 @@ input[type="radio"] {
 
 @media (min-width: 768px) {
     .contenedor-catalogo,
+    .contenedor-categorias,
     .contenedor-equipo {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -415,6 +423,7 @@ input[type="radio"] {
 
 @media (min-width: 1024px) {
     .contenedor-catalogo,
+    .contenedor-categorias,
     .contenedor-equipo {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -603,7 +612,8 @@ footer a:focus-visible,
 }
 
 /* Botones de Guardar y Cancelar, uno al lado del otro */
-.acciones-form {
+.acciones-form,
+.grupo-botones {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -611,7 +621,8 @@ footer a:focus-visible,
     margin-top: 20px;
 }
 
-.acciones-form .boton {
+.acciones-form .boton,
+.grupo-botones .boton {
     margin-top: 0;
 }
 
@@ -619,4 +630,168 @@ footer a:focus-visible,
 .boton:disabled {
     opacity: 0.6;
     cursor: wait;
+}
+
+/* --- ENTREGA 11: SESIÓN EN EL HEADER --- */
+.saludo-usuario {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.boton-salir {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    color: var(--color-texto-claro);
+    font-family: var(--fuente-base);
+    font-weight: 500;
+    padding: 6px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.boton-salir:hover {
+    background-color: var(--color-texto-claro);
+    color: var(--color-texto);
+}
+
+.boton-salir:focus-visible {
+    outline: 3px solid var(--color-acento);
+    outline-offset: 2px;
+}
+
+/* --- INICIO: FRANJA DE LA INTRANET --- */
+.franja-intranet {
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.franja-intranet h2 {
+    color: var(--color-texto-claro);
+    border-bottom: none;
+    padding-bottom: 0;
+    margin: 0 0 8px;
+}
+
+.franja-intranet p {
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+}
+
+.franja-intranet .boton {
+    margin-top: 0;
+}
+
+/* --- INICIO: BLOQUE "UN VIVERO, NO UN DEPÓSITO" --- */
+/* Foto y texto apilados en celular, lado a lado desde tablet */
+.bloque-vivero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.bloque-vivero img {
+    width: calc(100% - 12px);
+    height: 320px;
+    object-fit: cover;
+    margin-bottom: 12px;
+}
+
+.bloque-vivero p {
+    margin-top: 0;
+}
+
+@media (min-width: 768px) {
+    .bloque-vivero {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.lista-ventajas {
+    padding-left: 20px;
+    margin: 0 0 8px;
+}
+
+.lista-ventajas li {
+    margin-bottom: 8px;
+    color: var(--color-texto);
+}
+
+.lista-ventajas li::marker {
+    color: var(--color-acento);
+}
+
+/* --- NOSOTROS: RETRATOS DEL EQUIPO --- */
+/* Más altos que las fotos de plantas, y encuadrados en la cara */
+.contenedor-equipo img {
+    height: 260px;
+    object-position: center 30%;
+}
+
+/* --- ANCHOS PARA FORMULARIOS --- */
+/* Un formulario de 2 campos no necesita 1100px: más angosto se lee mejor */
+.ancho-angosto {
+    max-width: 480px;
+}
+
+.ancho-medio {
+    max-width: 760px;
+}
+
+/* --- FOOTER: la lista de secciones siempre en columna, como las otras dos --- */
+@media (min-width: 768px) {
+    footer ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* --- CONTACTO: formulario + panel "Dónde estamos" --- */
+.contacto-grilla {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 24px;
+    align-items: start;
+}
+
+@media (min-width: 900px) {
+    .contacto-grilla {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.panel-contacto {
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    padding: 24px;
+}
+
+.panel-contacto h2 {
+    font-size: 1.15em;
+    margin-top: 0;
+}
+
+.panel-contacto h2 + p {
+    margin-bottom: 24px;
+}
+
+.panel-contacto th {
+    width: auto;
+}
+
+.mapa {
+    display: block;
+    width: 100%;
+    height: 220px;
+    border: 1px solid var(--color-borde);
+    margin-top: 24px;
 }

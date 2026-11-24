@@ -53,3 +53,67 @@ function destinoSeguro(destino) {
     const esPaginaDelSitio = /^[a-z-]+\.html(\?id=[\w-]+)?$/.test(destino || '');
     return esPaginaDelSitio ? destino : 'listado.html';
 }
+
+
+// ---------- PÁGINAS PROTEGIDAS ----------
+
+// Si no hay sesión, manda al login y recuerda a qué página se quería entrar
+function protegerPagina() {
+    if (!obtenerSesion()) {
+        const paginaActual = window.location.pathname.split('/').pop() + window.location.search;
+        window.location.replace('login.html?volver=' + encodeURIComponent(paginaActual));
+    }
+}
+
+
+// ---------- HEADER SEGÚN LA SESIÓN ----------
+
+// Con sesión iniciada: "Ingresar" pasa a "Intranet", y se suman el saludo y "Cerrar sesión"
+function actualizarHeader() {
+    const usuario = obtenerSesion();
+    const menu = document.querySelector('#menu-principal ul');
+
+    if (!usuario || !menu) {
+        return;
+    }
+
+    const linkIngresar = menu.querySelector('a[href="login.html"]');
+    if (linkIngresar) {
+        linkIngresar.textContent = 'Intranet';
+        linkIngresar.href = 'listado.html';
+    }
+
+    const saludo = document.createElement('li');
+    saludo.className = 'saludo-usuario';
+    saludo.textContent = 'Hola, ' + usuario.nombre;
+
+    const botonSalir = document.createElement('button');
+    botonSalir.type = 'button';
+    botonSalir.className = 'boton-salir';
+    botonSalir.textContent = 'Cerrar sesión';
+    botonSalir.addEventListener('click', function () {
+        cerrarSesion();
+        window.location.href = 'index.html';
+    });
+
+    const itemSalir = document.createElement('li');
+    itemSalir.appendChild(botonSalir);
+
+    menu.appendChild(saludo);
+    menu.appendChild(itemSalir);
+}
+
+
+// ---------- AL CARGAR CADA PÁGINA ----------
+
+// Las páginas de la intranet tienen <body data-protegida>
+if (document.body.hasAttribute('data-protegida')) {
+    protegerPagina();
+}
+
+// Si ya hay sesión, no tiene sentido mostrar el formulario de login
+if (document.getElementById('form-login') && obtenerSesion()) {
+    window.location.replace('listado.html');
+}
+
+actualizarHeader();
