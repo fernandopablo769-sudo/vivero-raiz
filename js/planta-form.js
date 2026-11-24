@@ -193,7 +193,7 @@ if (formPlanta) {
             }
         } catch (error) {
             console.error('Error al guardar la planta:', error);
-            mostrarErrorGeneral('No pudimos guardar la planta. Revisá tu conexión e intentá de nuevo.');
+            avisarError('No pudimos guardar la planta', 'Revisá tu conexión e intentá de nuevo.');
             botonGuardar.disabled = false;
             botonGuardar.textContent = 'Guardar planta';
         }

@@ -795,3 +795,25 @@ footer a:focus-visible,
     border: 1px solid var(--color-borde);
     margin-top: 24px;
 }
+
+/* --- ENTREGA 11: VENTANAS DE SWEETALERT2 CON EL ESTILO DEL SITIO ---
+   "body" adelante les da más peso que los estilos propios de la librería */
+body .swal2-popup {
+    font-family: var(--fuente-base);
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    border-radius: 0;
+}
+
+body .swal2-title {
+    font-family: var(--fuente-titulos);
+    color: var(--color-texto);
+}
+
+body .swal2-actions {
+    gap: 12px;
+}
+
+body .swal2-actions .boton {
+    margin-top: 0;
+}

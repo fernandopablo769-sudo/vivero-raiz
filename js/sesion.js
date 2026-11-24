@@ -91,9 +91,12 @@ function actualizarHeader() {
     botonSalir.type = 'button';
     botonSalir.className = 'boton-salir';
     botonSalir.textContent = 'Cerrar sesión';
-    botonSalir.addEventListener('click', function () {
-        cerrarSesion();
-        window.location.href = 'index.html';
+    botonSalir.addEventListener('click', async function () {
+        const confirmado = await confirmarAccion('¿Cerrar sesión?', 'Vas a tener que volver a ingresar para usar la intranet.', 'Cerrar sesión', false);
+        if (confirmado) {
+            cerrarSesion();
+            window.location.href = 'index.html';
+        }
     });
 
     const itemSalir = document.createElement('li');

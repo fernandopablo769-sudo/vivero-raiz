@@ -1,5 +1,5 @@
 // ============================================================
-// listado.js — Intranet: tabla, baja y mensajes (Entregas 8, 9 y 10)
+// listado.js — Intranet: tabla, baja y mensajes (Entregas 8 a 11)
 // ============================================================
 
 // Arma el HTML de UNA fila de la tabla
@@ -38,35 +38,21 @@ const cuerpoTabla = document.getElementById('tabla-plantas');
 if (cuerpoTabla) {
     const cargando = document.getElementById('cargando');
     const errorCarga = document.getElementById('error-carga');
-    const mensajeExito = document.getElementById('listado-exito');
-    const mensajeError = document.getElementById('listado-error');
 
     // Las plantas que se están mostrando en la tabla
     let plantasListado = [];
 
 
-    // ---------- MENSAJES ----------
-
-    function mostrarExito(texto) {
-        mensajeError.hidden = true;
-        mensajeExito.textContent = texto;
-        mensajeExito.hidden = false;
-    }
-
-    function mostrarErrorOperacion(texto) {
-        mensajeExito.hidden = true;
-        mensajeError.textContent = texto;
-        mensajeError.hidden = false;
-    }
+    // ---------- MENSAJES (con SweetAlert2, desde alertas.js) ----------
 
     // Si venimos del formulario, la URL trae ?resultado=creada o ?resultado=editada
     function mostrarResultadoDelFormulario() {
         const resultado = new URLSearchParams(window.location.search).get('resultado');
 
         if (resultado === 'creada') {
-            mostrarExito('La planta se agregó al catálogo.');
+            avisarExito('La planta se agregó al catálogo.');
         } else if (resultado === 'editada') {
-            mostrarExito('Los cambios se guardaron.');
+            avisarExito('Los cambios se guardaron.');
         }
 
         // Limpiamos la URL, así el mensaje no vuelve a aparecer si se recarga la página
@@ -84,7 +70,12 @@ if (cuerpoTabla) {
         });
 
         // Confirmación previa: si la persona cancela, no se borra nada
-        const confirmado = confirm('¿Eliminar "' + planta.nombre + '"? Esta acción no se puede deshacer.');
+        const confirmado = await confirmarAccion(
+            '¿Eliminar "' + planta.nombre + '"?',
+            'Se borra del catálogo y de la intranet. Esta acción no se puede deshacer.',
+            'Sí, eliminar',
+            true
+        );
         if (!confirmado) {
             return;
         }
@@ -98,10 +89,10 @@ if (cuerpoTabla) {
             });
             mostrarTabla(plantasListado, cuerpoTabla);
 
-            mostrarExito('Se eliminó "' + planta.nombre + '".');
+            avisarExito('Se eliminó "' + planta.nombre + '".');
         } catch (error) {
             console.error('Error al eliminar la planta:', error);
-            mostrarErrorOperacion('No pudimos eliminar la planta. Revisá tu conexión e intentá de nuevo.');
+            avisarError('No pudimos eliminar la planta', 'Revisá tu conexión e intentá de nuevo.');
         }
     }
 
