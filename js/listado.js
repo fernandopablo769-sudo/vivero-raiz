@@ -33,6 +33,88 @@ function mostrarTabla(listaDePlantas, cuerpoTabla) {
 }
 
 
+
+// ---------- GRÁFICO DE STOCK POR CATEGORÍA (Chart.js) ----------
+
+const CATEGORIAS = ['interior', 'exterior', 'suculenta', 'aromática'];
+let grafico = null;
+
+// Suma el stock de las plantas de cada categoría: [23, 6, 12, 15]
+function calcularStockPorCategoria(listaDePlantas) {
+    return CATEGORIAS.map(function (categoria) {
+        let total = 0;
+        listaDePlantas.forEach(function (planta) {
+            if (planta.categoria === categoria) {
+                total += Number(planta.stock);
+            }
+        });
+        return total;
+    });
+}
+
+// Dibuja el gráfico la primera vez; las siguientes, solo actualiza los números
+function dibujarGrafico(listaDePlantas) {
+    const lienzo = document.getElementById('grafico-stock');
+
+    // Si la librería no cargó, la página sigue funcionando sin el gráfico
+    if (!lienzo || typeof Chart === 'undefined') {
+        return;
+    }
+
+    const totales = calcularStockPorCategoria(listaDePlantas);
+    const etiquetas = CATEGORIAS.map(capitalizar);
+
+    // Un lector de pantalla no puede "ver" el gráfico: le describimos los números
+    const descripcion = etiquetas.map(function (etiqueta, i) {
+        return etiqueta + ': ' + totales[i];
+    }).join(', ');
+    lienzo.setAttribute('aria-label', 'Stock por categoría. ' + descripcion + '.');
+
+    if (grafico) {
+        grafico.data.datasets[0].data = totales;
+        grafico.update();
+        return;
+    }
+
+    Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+    Chart.defaults.color = '#3D4139';
+
+    grafico = new Chart(lienzo, {
+        type: 'bar',
+        data: {
+            labels: etiquetas,
+            datasets: [{
+                label: 'Unidades en stock',
+                data: totales,
+                backgroundColor: '#2E7D55',
+                hoverBackgroundColor: '#1F4A3A',
+                maxBarThickness: 24,
+                borderRadius: { topLeft: 4, topRight: 4 },
+                borderSkipped: 'bottom'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    grid: { display: false }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { precision: 0 },
+                    grid: { color: 'rgba(18, 24, 21, 0.08)' },
+                    border: { display: false }
+                }
+            }
+        }
+    });
+}
+
+
 const cuerpoTabla = document.getElementById('tabla-plantas');
 
 if (cuerpoTabla) {
@@ -88,6 +170,7 @@ if (cuerpoTabla) {
                 return p.id !== id;
             });
             mostrarTabla(plantasListado, cuerpoTabla);
+            dibujarGrafico(plantasListado);
 
             avisarExito('Se eliminó "' + planta.nombre + '".');
         } catch (error) {
@@ -112,6 +195,7 @@ if (cuerpoTabla) {
             plantasListado = await obtenerPlantas();
             cargando.hidden = true;
             mostrarTabla(plantasListado, cuerpoTabla);
+            dibujarGrafico(plantasListado);
         } catch (error) {
             console.error('Error al cargar el listado:', error);
             cargando.hidden = true;

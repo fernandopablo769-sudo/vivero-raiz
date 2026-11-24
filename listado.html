@@ -56,6 +56,14 @@
                 </table>
             </div>
         </section>
+
+        <section>
+            <h2>Stock por categoría</h2>
+            <p>Unidades disponibles de cada tipo de planta. Se actualiza solo cuando eliminás una.</p>
+            <div class="contenedor-grafico">
+                <canvas id="grafico-stock" role="img" aria-label="Gráfico de barras con el stock de cada categoría"></canvas>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -79,8 +87,9 @@
     </footer>
 
     <script src="js/sesion.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.14.5/sweetalert2.all.min.js"></script>
     <script src="js/alertas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
     <script src="js/utilidades.js"></script>
     <script src="js/api.js"></script>
     <script src="js/listado.js"></script>
